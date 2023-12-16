@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -11,3 +12,4 @@ class Recipe(models.Model):
     recipe_description = models.TextField()
     recipe_image = models.ImageField(upload_to="recipe")
     recipe_view_count = models.IntegerField(default=1)
+    date_posted = models.DateTimeField(auto_now_add=True)

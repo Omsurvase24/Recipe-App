@@ -17,12 +17,14 @@ def recipes(request):
         recipe_name = data.get('recipe_name')
         recipe_description = data.get('recipe_description')
         user = request.user
+        date_posted = data.get('date_posted')
 
         Recipe.objects.create(
             recipe_image=recipe_image,
             recipe_name=recipe_name,
             recipe_description=recipe_description,
             user=user,
+            date_posted=date_posted,
         )
 
         return redirect('/recipes/')

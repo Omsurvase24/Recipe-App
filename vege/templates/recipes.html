@@ -44,7 +44,7 @@
       <th scope="col">Recipe Description</th>
       <th scope="col">Recipe Image</th>
       <th scope="col">Actions</th>
-      <th scope="col">Posted By</th>
+      <th scope="col">Posted</th>
     </tr>
   </thead>
   <tbody>
@@ -59,7 +59,9 @@
             <a href = "/delete-recipe/{{recipe.id}}" class = "btn btn-danger m-2">Delete</button>
             <a href = "/update-recipe/{{recipe.id}}" class = "btn btn-success m-2">Update</button>  
         </td>
-        <td>{{recipe.user}}</td>
+        <td>{{recipe.user}} <br>
+          {{recipe.date_posted}}
+        </td>
     </tr>
     {% endfor %}
   </tbody>
