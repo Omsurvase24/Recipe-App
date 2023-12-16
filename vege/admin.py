@@ -1,4 +1,10 @@
 from django.contrib import admin
 from .models import *
 # Register your models here.
-admin.site.register(Recipe)
+
+
+class RecipeWho(admin.ModelAdmin):
+    list_display = ['recipe_name', 'user']
+
+
+admin.site.register(Recipe, RecipeWho)

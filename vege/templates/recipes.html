@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {%block start%}         
 
-<h6 class = "p-2c">Signed in as: {{request.user}}</h6>
+<h6 class = "p-2 text-white">Signed in as: {{request.user}}</h6>
 
 <div class = "container mt-5">
     <form class = "col-6 mx-auto card p-3 shadow-lg" method = "post" enctype = "multipart/form-data">
@@ -27,16 +27,16 @@
       <div class = "mx-auto col-6">
       <form>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Search Food</label>
+          <label for="exampleInputEmail1" class="form-label text-white bg-dark">Search Food</label>
           <input name="search" type="text" class="form-control">
         </div>
-      <button type = "submit" class = "btn btn-primary">Search</button>          
+      <button type = "submit" class = "btn btn-secondary">Search</button>          
       </form>
       </div>
     </div>
 
     
-<table class="table mt-5">
+<table class="table table-dark table-striped mt-5">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -44,6 +44,7 @@
       <th scope="col">Recipe Description</th>
       <th scope="col">Recipe Image</th>
       <th scope="col">Actions</th>
+      <th scope="col">Posted By</th>
     </tr>
   </thead>
   <tbody>
@@ -58,6 +59,7 @@
             <a href = "/delete-recipe/{{recipe.id}}" class = "btn btn-danger m-2">Delete</button>
             <a href = "/update-recipe/{{recipe.id}}" class = "btn btn-success m-2">Update</button>  
         </td>
+        <td>{{recipe.user}}</td>
     </tr>
     {% endfor %}
   </tbody>

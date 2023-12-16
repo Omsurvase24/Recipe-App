@@ -16,11 +16,13 @@ def recipes(request):
         recipe_image = request.FILES.get('recipe_image')
         recipe_name = data.get('recipe_name')
         recipe_description = data.get('recipe_description')
+        user = request.user
 
         Recipe.objects.create(
             recipe_image=recipe_image,
             recipe_name=recipe_name,
             recipe_description=recipe_description,
+            user=user,
         )
 
         return redirect('/recipes/')
