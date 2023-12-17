@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{%block start%}
+
+<section class="d-flex m-3">
+    <div class="text-white">
+        <h4>Recipe Name:</h4>
+        <h1 style="font-size : 80px">{{recipe.recipe_name}}</h1>
+        <h4 class="mt-4">Recipe Description:</h4>
+        <p>{{recipe.recipe_description}}</p>
+        <a href = "/update-recipe/{{recipe.id}}" class = "btn btn-success">Update</a>
+        <a href = "/delete-recipe/{{recipe.id}}" class = "btn btn-danger">Delete</a>
+    </div>
+    <div>
+        <img src = "/media/{{recipe.recipe_image}}" style = "height : 500px">
+    </div>
+</section>
+
+{%endblock%}

@@ -56,8 +56,9 @@
       <td>
         <img src = "/media/{{recipe.recipe_image}}" style = "height : 100px"></td>
         <td>
-            <a href = "/delete-recipe/{{recipe.id}}" class = "btn btn-danger m-2">Delete</button>
-            <a href = "/update-recipe/{{recipe.id}}" class = "btn btn-success m-2">Update</button>  
+            <a href = "/delete-recipe/{{recipe.id}}" class = "btn btn-danger m-1">Delete</a>
+            <a href = "/update-recipe/{{recipe.id}}" class = "btn btn-success m-1">Update</a>  
+            <a href = "/recipe-details/{{recipe.id}}" class = "btn btn-success m-1">View</a>  
         </td>
         <td>{{recipe.user}} <br>
           {{recipe.date_posted}}

@@ -121,3 +121,10 @@ def register_page(request):
         return redirect('/register/')
 
     return render(request, 'register.html')
+
+
+def details_page(request, id):
+    queryset = Recipe.objects.get(id=id)
+
+    context = {'recipe': queryset}
+    return render(request, 'details.html', context)
