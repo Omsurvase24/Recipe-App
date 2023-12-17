@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.views.generic.edit import CreateView
 # Create your views here.
 
 
@@ -56,7 +56,7 @@ def update_recipe(request, id):
             queryset.recipe_image = recipe_image
 
         queryset.save()
-        return redirect('/recipes')
+        return redirect('/recipes/')
 
     context = {'recipe': queryset}
     return render(request, 'update_recipes.html', context)
@@ -128,3 +128,9 @@ def details_page(request, id):
 
     context = {'recipe': queryset}
     return render(request, 'details.html', context)
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    template_name = 'add_comment.html'
+    fields = '__all__'

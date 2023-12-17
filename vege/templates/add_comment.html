@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block start %}
+
+<div class="col-6 mx-auto card p-3 shadow-lg">
+    <h1>Add Comment..</h1>
+    <br>
+    <div class="form-group">
+        <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <button class = "btn btn-secondary">Add Comment</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

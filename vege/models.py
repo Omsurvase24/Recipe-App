@@ -13,3 +13,11 @@ class Recipe(models.Model):
     recipe_image = models.ImageField(upload_to="recipe")
     recipe_view_count = models.IntegerField(default=1)
     date_posted = models.DateTimeField(auto_now_add=True)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Recipe, related_name="comments", on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    body = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)

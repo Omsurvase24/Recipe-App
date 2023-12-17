@@ -8,3 +8,4 @@ class RecipeWho(admin.ModelAdmin):
 
 
 admin.site.register(Recipe, RecipeWho)
+admin.site.register(Comment)

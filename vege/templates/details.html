@@ -6,7 +6,7 @@
         <h4>Recipe Name:</h4>
         <h1 style="font-size : 80px">{{recipe.recipe_name}}</h1>
         <h4 class="mt-4">Recipe Description:</h4>
-        <p>{{recipe.recipe_description}}</p>
+        <p class="col-11">{{recipe.recipe_description}}</p>
         <a href = "/update-recipe/{{recipe.id}}" class = "btn btn-success">Update</a>
         <a href = "/delete-recipe/{{recipe.id}}" class = "btn btn-danger">Delete</a>
     </div>
@@ -14,5 +14,24 @@
         <img src = "/media/{{recipe.recipe_image}}" style = "height : 500px">
     </div>
 </section>
+<hr class="text-white">
+<div class="text-white m-3">
+    <h2>Comments:</h2>
+    {% if not recipe.comments.all %}
+        No comments yet..<a href="{% url 'add_comment' recipe.id %}" class = "btn btn-secondary mb-3">Add Comment</a>
+    {% else %}
+    <br>
+    <a href="{% url 'add_comment' recipe.id %}" class = "btn btn-secondary mb-3">Add Comment</a>
+    <br>
+        {% for comment in recipe.comments.all %}
+            <strong> {{comment.name}} - 
+            {{comment.date_added}} : </strong>
+            <br>
+            {{comment.body}}
+            <br>
+        {% endfor %}
+    {% endif %}
+    <br>
+</div>
 
 {%endblock%}
