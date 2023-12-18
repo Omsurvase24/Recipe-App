@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
+from .forms import *
+from datetime import datetime
 # Create your views here.
 
 
@@ -130,7 +132,34 @@ def details_page(request, id):
     return render(request, 'details.html', context)
 
 
-class AddCommentView(CreateView):
-    model = Comment
-    template_name = 'add_comment.html'
-    fields = '__all__'
+# class AddCommentView(CreateView):
+#     model = Comment
+#     template_name = 'add_comment.html'
+#     fields = '__all__'
+
+
+def add_comment(request, id):
+    recipe = Recipe.objects.get(id=id)
+    form = CommentForm(instance=recipe)
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=recipe)
+        if form.is_valid():
+            name = request.user
+            body = form.cleaned_data['body']
+            c = Comment(post=recipe,
+                        name=name,
+                        body=body,
+                        date_added=datetime.now()
+                        )
+            c.save()
+            return redirect('/recipes/')
+        else:
+            print('form is invalid')
+    else:
+        form = CommentForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'add_comment.html', context)
