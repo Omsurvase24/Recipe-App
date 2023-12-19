@@ -14,6 +14,9 @@ class Recipe(models.Model):
     recipe_view_count = models.IntegerField(default=1)
     date_posted = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.recipe_name
+
 
 class Comment(models.Model):
     post = models.ForeignKey(
@@ -21,3 +24,6 @@ class Comment(models.Model):
     name = models.CharField(max_length=255)
     body = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.post.recipe_name, self.name)

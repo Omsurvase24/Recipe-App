@@ -17,12 +17,13 @@
 <hr class="text-white">
 <div class="text-white m-3">
     <h2>Comments:</h2>
+    <br>
     {% if not recipe.comments.all %}
         No comments yet..<a href="{% url 'add_comment' recipe.id %}" class = "btn btn-secondary mb-3">Add Comment</a>
     {% else %}
-    <br>
-    <a href="{% url 'add_comment' recipe.id %}" class = "btn btn-secondary mb-3">Add Comment</a>
-    <br>
+        <a href="{% url 'add_comment' recipe.id %}" class = "btn btn-secondary mb-3">Add Comment</a>
+        <a href="{% url 'delete_comment' recipe.id %}" class = "btn btn-danger mb-3">Delete Comment</a>
+        <br>
         {% for comment in recipe.comments.all %}
             <strong> {{comment.name}} - 
             {{comment.date_added}} : </strong>

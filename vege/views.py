@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from .models import *
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -163,3 +163,10 @@ def add_comment(request, id):
     }
 
     return render(request, 'add_comment.html', context)
+
+
+def delete_comment(request, id):
+    comment = Comment.objects.filter(post=id).last()
+    recipe_id = comment.post.id
+    comment.delete()
+    return redirect(reverse('details_page', args=[recipe_id]))
