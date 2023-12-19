@@ -7,8 +7,10 @@
         <h1 style="font-size : 80px">{{recipe.recipe_name}}</h1>
         <h4 class="mt-4">Recipe Description:</h4>
         <p class="col-11">{{recipe.recipe_description}}</p>
-        <a href = "/update-recipe/{{recipe.id}}" class = "btn btn-success">Update</a>
-        <a href = "/delete-recipe/{{recipe.id}}" class = "btn btn-danger">Delete</a>
+        {% if request.user == recipe.user %}
+            <a href = "/update-recipe/{{recipe.id}}" class = "btn btn-success">Update</a>
+            <a href = "/delete-recipe/{{recipe.id}}" class = "btn btn-danger">Delete</a>
+        {% endif %}
     </div>
     <div>
         <img src = "/media/{{recipe.recipe_image}}" style = "height : 500px">
@@ -19,17 +21,21 @@
     <h2>Comments:</h2>
     <br>
     {% if not recipe.comments.all %}
-        No comments yet..<a href="{% url 'add_comment' recipe.id %}" class = "btn btn-secondary mb-3">Add Comment</a>
+        <a href="{% url 'add_comment' recipe.id %}" class = "btn btn-secondary mb-3">Add Comment</a>
+        <br>
+        <strong>No comments yet...</strong>
     {% else %}
         <a href="{% url 'add_comment' recipe.id %}" class = "btn btn-secondary mb-3">Add Comment</a>
-        <a href="{% url 'delete_comment' recipe.id %}" class = "btn btn-danger mb-3">Delete Comment</a>
-        <br>
         {% for comment in recipe.comments.all %}
+            <br>
             <strong> {{comment.name}} - 
             {{comment.date_added}} : </strong>
             <br>
             {{comment.body}}
             <br>
+            {% if request.user == recipe.user %}
+                <a href="{% url 'delete_comment' recipe.id %}" class = "btn btn-danger btn-sm mb-3">Delete Comment</a>
+            {% endif %}
         {% endfor %}
     {% endif %}
     <br>

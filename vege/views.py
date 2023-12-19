@@ -132,12 +132,6 @@ def details_page(request, id):
     return render(request, 'details.html', context)
 
 
-# class AddCommentView(CreateView):
-#     model = Comment
-#     template_name = 'add_comment.html'
-#     fields = '__all__'
-
-
 def add_comment(request, id):
     recipe = Recipe.objects.get(id=id)
     form = CommentForm(instance=recipe)
@@ -152,7 +146,7 @@ def add_comment(request, id):
                         date_added=datetime.now()
                         )
             c.save()
-            return redirect('/recipes/')
+            return redirect(reverse('details_page', args=[id]))
         else:
             print('form is invalid')
     else:
